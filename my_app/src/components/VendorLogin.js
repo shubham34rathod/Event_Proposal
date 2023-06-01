@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import '../css/vendorLogin.css'
-import 'bootstrap/dist/css/bootstrap.css'
+import { useNavigate } from 'react-router-dom'
+// import 'bootstrap/dist/css/bootstrap.css'
 
 function VendorLogin()
 {
+    const navigate=useNavigate()
     const [th1,setTh1]=useState(false)
     const [th2,setTh2]=useState(false)
     const Style1={
@@ -33,7 +35,7 @@ function VendorLogin()
           </div>
           <div className="parent2">
               <form className='form'>
-                 <div className="header">
+                 <div className="Formheader">
                     <table className='head'>
                         <tr>
                             {/* <th className='th1' style={{borderLeft:'none'}}>Vendor</th> */}
@@ -49,7 +51,7 @@ function VendorLogin()
                  </div>
                  <p id="passwordForgot">Forget Password?</p>
                  <div className="buttons">
-                    <p id="createAc">Create Account</p>
+                    <p id="createAc" onClick={()=>navigate('/register')}>Create Account</p>
                     <input class="btn btn-primary" id="signInBtn" type="button" value="SIGN IN"></input>
                  </div>
               </form>

@@ -1,0 +1,75 @@
+body{
+    background-image:none;
+}
+.container{
+    padding-top: 90px;
+    width: 80%;
+    height: 50px;
+}
+.head{}
+#projectSearch{
+    width: 150px;
+    height: 30px;
+    border: none;
+}
+#projectSearch ::placeholder{
+    font-size: 10px;
+
+}
+.subCon1{
+    /* border: 1px solid; */
+    display: flex;
+}
+.b1{
+    display: flex;
+}
+.b2{
+    position: relative;
+    left: 890px;
+}
+.filterImg{
+    border-radius: 100px;
+    width: 40px;
+}
+.subCon2{
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #425E81;
+    border-radius: 4px;
+    opacity: 1;
+}
+.description100{
+    width: 90%;
+    /* padding-left: -10px; */
+}
+.b4{
+    display: flex;
+    text-align: center;
+}
+.b4_1{
+    /* border: 1px solid; */
+    margin: 10px 20px 0px 0px;
+    line-height: 12px;
+    /* width: 40%; */
+}
+#b4_1{
+    position: relative;
+    left: 600px;
+    top: 15px;
+}
+.edit{
+    width:17px;
+}
+.delete{
+    width:17px;
+    margin-left: 25px;
+}
+.edit:hover,.delete:hover{
+    border: 1px solid;
+}
+.smallHeading{
+    color: #AAAAAA;
+    font-size: 14px;
+    text-decoration: underline;
+}

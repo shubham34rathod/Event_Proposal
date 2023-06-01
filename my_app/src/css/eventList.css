@@ -1,0 +1,40 @@
+.eventListBox{
+    /* border: 1px solid; */
+    width: 90%;
+    margin: auto;
+    height: 300px;
+}
+.proposals{
+    margin: 20px 0px 20px 10px;
+    font: normal normal 600 20px/33px Open Sans;
+    /* letter-spacing: 0px; */
+    color: #575A5D;
+    opacity: 1;
+}
+.eventList{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+.listOfEvent{
+    width: 250px;
+    height: 230px;
+    /* border: 1px solid; */
+    margin-left: 10px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    opacity: 1;
+}
+.subListOfEvent{
+    width: 250px;
+    height: 150px;
+    /* border: 1px solid; */
+    border-radius: 8px 8px 0px 0px;
+}
+.partyEvent{
+    width:249px;
+    height: 140px;
+    border-radius: 8px 8px 0px 0px;
+}

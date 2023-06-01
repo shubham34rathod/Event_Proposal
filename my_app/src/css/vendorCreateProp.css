@@ -1,0 +1,188 @@
+.samplePartyImg{
+    height: 184px;
+}
+.partyImg{
+    background-color: #b9b9b9;
+    filter: blur(5px);
+}
+.samples{
+    width: 100%;
+    /* height: 100px; */
+    border: 1px solid;
+}
+.popUpParent{
+    width: 100%;
+    height: 720px;
+    border: 2px solid red;
+    position: fixed;
+    /* background-color: #E5E0E0;
+    opacity: 0.5; */
+    top: 1px;
+}
+.popBox{
+    width: 900px;
+    height: 600px;
+    /* border: 1px solid #E5E0E0; */
+    margin: auto ; 
+    margin-top: 80px;
+    background-color: white;
+    border: 1px solid #E5E0E0;
+    border-radius: 12px;
+    opacity: 1;
+}
+.popChild1{
+    border-right: 1px solid #E5E0E0;
+}
+.creatProposal{
+    text-align: center;
+    padding-top: 10px;
+    position: relative;
+    left: 20px;
+}
+.closeImg{
+    float: right;
+    padding-right: 30px;
+    padding-top: 5px;
+    width: 45px;
+}
+.hr1{
+    border: 1px solid #707070;
+    opacity: 0.2;
+    position: relative;
+    right: 20px;
+}
+.parentPop{
+    display: flex;
+}
+.popChild1{
+    width: 50%;
+    height: 420px;
+    /* border: 1px solid; */
+}
+.popBody{
+    display: flex;
+}
+.popSubChuld1{
+    margin: 20px;
+}
+.popSubChuld2{
+    margin: 20px;
+}
+.labelEventname{
+    letter-spacing: 0.16px;
+    color: #2D2D2E;
+    opacity: 1;
+    font-size: 14px;
+    margin-left: 40px;
+    padding-bottom: 10px;
+    text-align: center
+}
+.label{
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0.16px;
+    color: #2D2D2E;
+    opacity: 1;
+    font-size: 13px;
+    padding-bottom: 5px;
+}
+.bodyBox{
+    margin:0px 0px 15px 19px
+}
+.nameBox input{
+    width: 300px;
+    height: 30px;
+    margin-left: 40px;
+    /* margin-bottom: 0px; */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    opacity: 1;
+}
+.bodyBox input,.bodyBox select{
+    width: 150px;
+    height: 30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    opacity: 1;
+}
+.bodyBox input::placeholder{
+    font: normal normal normal 14px/19px Open Sans;
+letter-spacing: 0.14px;
+color: #878889;
+opacity: 0.5;
+padding: 10px;
+}
+.bodyBox select::placeholder{
+    font: normal normal normal 14px/19px Open Sans;
+    letter-spacing: 0.14px;
+    color: #878889;
+    opacity: 0.5;
+    padding: 10px;
+}
+.description{
+    margin: 0px 0px 0px 36px;
+}
+.imgBox1{
+    display: flex;
+}
+.imgBox1{
+    margin-left: 20px;
+    height: 30px;
+    /* border: 1px solid; */
+}
+.addButton button{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #0078DD;
+    border-radius: 4px;
+    opacity: 1;
+    color: #006BD9;
+    font-size: 12px;
+    height: 20px;
+    width: 50px;
+    position: relative;
+    left: 310px;
+}
+.addButton button:hover{
+    height: 25px;;
+    width: 55px;
+}
+#imgBox2{
+    width: 400px;
+    height: 150px;
+    /* border: 1px solid; */
+    position: relative;
+    left: 20px;
+    display: grid;
+    /* display: flex; */
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(2,1fr);
+    column-gap: 5px;
+    row-gap: 5px;
+}
+.subImgBox2{
+    width: 100%;
+    height: 70px;
+    border: 1px solid;
+    background-color: #FAFAFA;
+    border-radius: 2px;
+    opacity: 1;
+}
+.foodPref{
+    font: normal normal normal 16px/22px Open Sans;
+    /* letter-spacing: 0.16px; */
+    font-size: 14px;
+    margin: 20px;
+    color: #2D2D2E;
+    opacity: 1;
+}
+#foodPreferences{
+    margin-left: 20px;
+    margin-top: -40px;
+    /* width: 400px; */
+}
+#praposalAddBtn{
+    margin-top: 30px;
+    position: relative;
+    left: 410px;
+}

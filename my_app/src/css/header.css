@@ -23,9 +23,12 @@ body{
     color: #64A1F5;
 }
 .child{
-    position: relative;
-    left: 1200px;
-    padding: 10px;
+    /* position: relative;
+    left: 1100px;
+    padding: 10px; */
+    position: fixed;
+    right: 80px;
+    top: 10px;
 }
 .profile_img{
     width: 40px;
@@ -34,6 +37,6 @@ body{
 .dropdown{
     position: relative;
     height: 5px;
-    left: 160px;
+    left: 105%;
     bottom: 40px;
 }

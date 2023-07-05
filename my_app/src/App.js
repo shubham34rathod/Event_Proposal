@@ -4,6 +4,7 @@ import EventData from "./components/EventData";
 import EventList from "./components/EventList";
 import Header from "./components/Header";
 import Router from "./components/Router/Router";
+import Tmp from "./components/Tmp";
 import VendorCreatePro from "./components/VendorCreatePro";
 
 import VendorLogin from "./components/VendorLogin";
@@ -12,6 +13,7 @@ import VendorRegister from "./components/VendorRegister";
 
 function App() {
   return <>
+  {/* <Tmp></Tmp> */}
     <Router></Router>
     {/* <VendorLogin></VendorLogin> */}
     {/* <VendorRegister></VendorRegister> */}

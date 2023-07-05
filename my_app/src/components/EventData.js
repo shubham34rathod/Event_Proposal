@@ -6,33 +6,42 @@ import party from '../image/party-people-enjoy-concert-at-festival-summer-DHDMPW
 import contact1 from '../image/contact1.jpg'
 import contact2 from '../image/contact2.jpeg'
 import contact3 from '../image/contatc3.jpg'
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function EventData()
 {
+   let location=useLocation()
+   let navigate=useNavigate()
+   console.log(location.state);
     return <>
        <Header></Header>
        <nav className="navBar">
-        <div className="navBotton"><button className="select">Select</button></div>
+        <div className="navBotton"><button className="select" onClick={()=>navigate('/events_list',{state:location.state._id})}>Select</button></div>
         <div className="leftNaveTag">
            <img src={backBtn} alt="back" className="backBtn"/>
-           <p className="nameOfVendor">Proposals &lt; John Contract</p>
+           <p className="nameOfVendor">Proposals &lt; {location.state.vendor_name}</p>
         </div>
        </nav>
        <div className="eventInfo1">
           <div className="eventInfo01">
              <div id="venueInfo">
-                <img src={party} alt="img" className="venueImg" />
+                {/* <img src={location.state.image[0]} alt="img" className="venueImg" /> */}
+                <div id='venueImage'>
+                  <img src={location.state.image[0]} alt="img" className="venueImg" />
+                </div>
                 <p className="imgID">ID:0001</p>
-                <p className="vendorName">Name &nbsp;&nbsp; <span style={{fontSize:'15px',color:'#1E2022'}}><b>Shubham Rathod</b></span></p> 
-                <p className="vendorEmail">Email&nbsp;&nbsp; <span style={{fontSize:'15px',color:'#1E2022'}}><b>shubham@gmail.com</b></span></p> 
+                <p className="vendorName">Name &nbsp;&nbsp; <span style={{fontSize:'15px',color:'#1E2022'}}><b>{location.state.vendor_name}</b></span></p> 
+                <p className="vendorEmail">Email&nbsp;&nbsp; <span style={{fontSize:'15px',color:'#1E2022'}}><b>{location.state.email_id}</b></span></p> 
                 <div className="dates">
-                   <p className="startDate" style={{fontSize:'12px',color: '#767676'}}>Start Date <span style={{color:'#1E2022'}}><b>20 Dec 2021</b></span></p> 
-                   <p className="endDate" style={{fontSize:'12px',color: '#767676'}}>End Date <span style={{color:'#1E2022'}}><b>20 Dec 2021</b></span></p> 
+                   <p className="startDate" style={{fontSize:'12px',color: '#767676'}}>Start Date <span style={{color:'#1E2022'}}><b>{location.state.startDate}</b></span></p> 
+                   <p className="endDate" style={{fontSize:'12px',color: '#767676'}}>End Date <span style={{color:'#1E2022'}}><b>{location.state.endDate}</b></span></p> 
                 </div>
                 <div className="typeOfEvent">
                     <div className="type">
                         <p style={{fontSize:'12px',color: '#767676'}}>Event Type</p>
-                        <p style={{marginTop:'-10px',borderRadius:'1px',width:'90px',paddingLeft:'10px',backgroundColor:'#D9ECFF',color:'#006BD9'}}>Marriage</p>
+                        <p style={{marginTop:'-10px',borderRadius:'1px',width:'90px',paddingLeft:'10px',backgroundColor:'#D9ECFF',color:'#006BD9'}}>{location.state.eventType}</p>
                     </div>
                     <div className="type">
                         <p style={{fontSize:'12px',color: '#767676'}}>Event class</p>
@@ -62,14 +71,16 @@ function EventData()
           <div className="eventInfo001">
              <h6><b>My albums</b></h6>
              <div className="imgBoxes">
-                <div className="imgAlum">
-                    <img src={party} alt="party" />
-                </div>
+               {location.state.image.map((data)=><>
+                  <div className="imgAlum">
+                    <img src={data} alt="party" />
+                  </div>
+               </>)}
+                {/* <div className="imgAlum"></div>
                 <div className="imgAlum"></div>
                 <div className="imgAlum"></div>
                 <div className="imgAlum"></div>
-                <div className="imgAlum"></div>
-                <div className="imgAlum"></div>
+                <div className="imgAlum"></div> */}
              </div>
           </div>
           <div className="eventInfo002">

@@ -6,6 +6,7 @@ import VendorCreatePro from "../VendorCreatePro";
 import VendorProposal from "../VendorProposal";
 import EventList from "../EventList";
 import EventData from "../EventData";
+import ForgotPassword from "../ForgotPassword";
 
 function Router()
 {
@@ -18,6 +19,7 @@ function Router()
             <Route path="/create_Proposal" element={<VendorCreatePro></VendorCreatePro>}></Route>
             <Route path="/events_list" element={<EventList></EventList>}></Route>
             <Route path="/select_venue" element={<EventData></EventData>}></Route>
+            <Route path="/forgotPassword" element={<ForgotPassword></ForgotPassword>}></Route>
          </Routes>
       </BrowserRouter>
     </>

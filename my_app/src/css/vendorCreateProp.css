@@ -1,19 +1,80 @@
 .samplePartyImg{
     height: 184px;
+    margin-top: 50px;
 }
 .partyImg{
     background-color: #b9b9b9;
     filter: blur(5px);
 }
+.partyImg2{
+    background-color: #b9b9b9;
+    /* filter: blur(5px); */
+}
+.goBack img{
+    width: 30px;
+}
 .samples{
     width: 100%;
     /* height: 100px; */
-    border: 1px solid;
+    /* border: 1px solid; */
+    margin: 40px 30px 30px 0px;
+    padding: 0px 40px 0px 100px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    column-gap: 5px;
+    row-gap: 30px;
+    /* filter: blur(2px); */
+}
+.samples2{
+    width: 100%;
+    /* height: 100px; */
+    /* border: 1px solid; */
+    margin: 40px 30px 30px 0px;
+    padding: 0px 40px 0px 100px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    column-gap: 5px;
+    row-gap: 30px;
+    filter: blur(2px);
+}
+.createdData{
+    /* border: 1px solid; */
+    box-shadow: 10px 10px 10px silver;
+    width:200px ;
+    height: 180px;
+    border-radius: 8px;
+}
+.createdEvent{
+    width: 100%;
+    height: 130px;
+    border: 1px solid silver;
+    border-radius: 8px;
+}
+.createdEvent img{
+    /* style={{width:'100%',height:'100%',borderRadius:'8px'}} */
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+#create button{
+    box-shadow: 10px 10px 10px silver;
+    width:200px ;
+    height: 180px;
+    border-radius: 8px;
+    font-size: 22px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-decoration: underline;
+}
+.eventLocation{
+    text-align: center;
+    font-size: 20px;
+    padding-top: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .popUpParent{
     width: 100%;
     height: 720px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     position: fixed;
     /* background-color: #E5E0E0;
     opacity: 0.5; */
@@ -41,9 +102,17 @@
 }
 .closeImg{
     float: right;
-    padding-right: 30px;
-    padding-top: 5px;
-    width: 45px;
+    position: relative;
+    right: 40px;
+    /* padding-right: 30px;
+    padding-top: 5px; */
+    width: 15px;
+}
+.closeImg:hover{
+    border: 2px solid gray;
+    border-radius: 100px;
+    /* box-shadow: 5px 5px 10px gray; */
+    width: 18px;
 }
 .hr1{
     border: 1px solid #707070;
@@ -132,7 +201,8 @@ padding: 10px;
     /* border: 1px solid; */
 }
 .addButton button{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+    /* width: 100px; */
+    /* background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #0078DD;
     border-radius: 4px;
     opacity: 1;
@@ -141,16 +211,28 @@ padding: 10px;
     height: 20px;
     width: 50px;
     position: relative;
-    left: 310px;
+    left: 310px; */
+}
+.addButton input{
+    width: 101px;
+    position: relative;
+    left: 252px;
 }
 .addButton button:hover{
     height: 25px;;
     width: 55px;
 }
 #imgBox2{
+      /* padding-left: 50px; */
     width: 400px;
     height: 150px;
     /* border: 1px solid; */
+    box-shadow: 5px 5px 5px silver;
+    background-image: url('https://www.pngkey.com/png/detail/785-7855983_search-search-button-jpg.png');
+    background-size: 150px 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-origin: padding-box; */
     position: relative;
     left: 20px;
     display: grid;
@@ -163,7 +245,8 @@ padding: 10px;
 .subImgBox2{
     width: 100%;
     height: 70px;
-    border: 1px solid;
+    /* border: 1px solid; */
+    box-shadow: 8px 8px 10px gray;
     background-color: #FAFAFA;
     border-radius: 2px;
     opacity: 1;

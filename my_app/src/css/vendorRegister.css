@@ -33,7 +33,7 @@ body{
 .form1{
     background: #FFFFFF 0% 0% no-repeat padding-box;
     width: 377px;
-    height: 530px;
+    height: 540px;
     /* border: 1px solid; */
     position: relative;
     left: 250px;
@@ -92,4 +92,10 @@ body{
     position: relative;
     left: 200px;
     width: 90px;
+}
+.passAlert{
+    position: relative;
+    left: 350px;
+    top: 80px;
+    color: red;
 }

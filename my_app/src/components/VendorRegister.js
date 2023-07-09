@@ -82,7 +82,7 @@ function VendorRegister()
         if(th2===true)
         {
              console.log(userInfo);
-             fetch('http://localhost:1000/userReg',{
+             fetch('https://event-proposal-backend-5ouz.onrender.com/userReg',{
                  method:"POST",
                  headers:{
                  "content-type":"application/json"
@@ -114,7 +114,7 @@ function VendorRegister()
         if(th1===true)
         {
              console.log(userInfo);
-             fetch('http://localhost:1000/vendorReg',{
+             fetch('https://event-proposal-backend-5ouz.onrender.com/vendorReg',{
                  method:"POST",
                  headers:{
                  "content-type":"application/json"

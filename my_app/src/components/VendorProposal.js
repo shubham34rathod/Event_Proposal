@@ -27,7 +27,7 @@ function VendorProposal()
     let [searchData,setSerarch]=useState('')
     //fetching created event data
    useEffect(()=>{
-    fetch(`http://localhost:1000/fetchingEventData/${token_id}`)
+    fetch(`https://event-proposal-backend-5ouz.onrender.com/fetchingEventData/${token_id}`)
     .then((data)=>data.json())
     .then((res)=>{
     //   console.log(res)
@@ -39,7 +39,7 @@ function VendorProposal()
    function deleteEvent(id)
    {
        console.log(id);
-        fetch(`http://localhost:1000/deleteEvent/${id}`)
+        fetch(`https://event-proposal-backend-5ouz.onrender.com/deleteEvent/${id}`)
         .then((data)=>data.json())
         .then((res)=>console.log(res))
         .catch(()=>console.log('backend error'))

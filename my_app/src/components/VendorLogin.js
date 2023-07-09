@@ -124,6 +124,9 @@ function VendorLogin()
                 if(data[0]==="login success")
                 {
                     showToast()
+                    Cookie.set('uid',data[1].token,{
+                        expires:1
+                    })
                     dispatch(updateVendorDetail(data[1]))
                     setTimeout(()=>{
                         navigate("/proposal_list")

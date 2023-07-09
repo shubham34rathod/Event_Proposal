@@ -27,19 +27,19 @@ function VendorProposal()
     let [searchData,setSerarch]=useState('')
     //fetching created event data
    useEffect(()=>{
-    fetch(`https://event-proposal-backend-5ouz.onrender.com/${token_id}`)
+    fetch(`http://localhost:1000/fetchingEventData/${token_id}`)
     .then((data)=>data.json())
     .then((res)=>{
     //   console.log(res)
       setEventData(res)
     })
     .catch(()=>console.log('fetching error'))
-   },[setEventData])
+   },[newEventData])
 
    function deleteEvent(id)
    {
        console.log(id);
-        fetch(`https://event-proposal-backend-5ouz.onrender.com/${id}`)
+        fetch(`http://localhost:1000/deleteEvent/${id}`)
         .then((data)=>data.json())
         .then((res)=>console.log(res))
         .catch(()=>console.log('backend error'))

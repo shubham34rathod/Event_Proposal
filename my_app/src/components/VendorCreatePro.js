@@ -66,7 +66,7 @@ function VendorCreatePro()
 
     //receving event data from backend
     useEffect(()=>{
-      fetch(`http://localhost:1000/fetchingEventData/${token_id}`)
+      fetch(`https://event-proposal-backend-5ouz.onrender.com/${token_id}`)
       // fetch(`http://localhost:1000/fetchingEventData`)
       .then((data)=>data.json())
       .then((res)=>{
@@ -92,7 +92,7 @@ function VendorCreatePro()
         let data=new FormData()
         data.append('file',file)
         data.append('upload_preset','event_project')
-        fetch('https://api.cloudinary.com/v1_1/df78wetic/image/upload',{
+        fetch('https://event-proposal-backend-5ouz.onrender.com/image/upload',{
           method:'POST',
           body:data
         })
@@ -131,7 +131,7 @@ function VendorCreatePro()
         if(editEventData)
         {
           console.log(location.state._id);
-          fetch(`http://localhost:1000/updateData/${location.state._id}`,{
+          fetch(`https://event-proposal-backend-5ouz.onrender.com/${location.state._id}`,{
             method:'PATCH',
             headers:{
               'content-type':'application/json'
@@ -160,7 +160,7 @@ function VendorCreatePro()
         }
         else
         {
-          fetch(`http://localhost:1000/cresteEvent/${token_id}/${vendor_name}/${vendor_email}`,{
+          fetch(`https://event-proposal-backend-5ouz.onrender.com/${token_id}/${vendor_name}/${vendor_email}`,{
             method:'POST',
             headers:{
               'content-type':'application/json'

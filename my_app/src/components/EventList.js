@@ -18,7 +18,7 @@ function EventList()
 
    //selected event
    useEffect(()=>{
-      fetch(`http://localhost:1000/selectedEvent/${location.state}`)
+      fetch(`https://event-proposal-backend-5ouz.onrender.com/${location.state}`)
       .then((data)=>data.json())
       .then((res)=>{
          // console.log(res);
@@ -38,7 +38,7 @@ function EventList()
 
    //event list
    useEffect(()=>{
-      fetch('http://localhost:1000/fetchingEventData')
+      fetch('https://event-proposal-backend-5ouz.onrender.com/fetchingEventData')
       .then((data)=>data.json())
       .then((res)=>{
       //   console.log(res)

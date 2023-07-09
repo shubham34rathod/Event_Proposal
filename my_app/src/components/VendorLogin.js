@@ -5,6 +5,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {updateVendorDetail} from '../components/slice/vendorSlice'
 import 'react-toastify/dist/ReactToastify.css'
 import {ToastContainer,toast} from 'react-toastify'
+import Cookie from 'js-cookie'
 // import 'bootstrap/dist/css/bootstrap.css'
 
 function VendorLogin()
@@ -80,6 +81,9 @@ function VendorLogin()
                 console.log(data)
                 if(data[0]==="login success")
                 {
+                    Cookie.set('uid',data[1].token,{
+                        expires:1
+                    })
                     dispatch(updateVendorDetail(data[1]))
                     showToast()
                     setTimeout(()=>{

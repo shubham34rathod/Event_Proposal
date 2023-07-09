@@ -5,10 +5,21 @@ import goBack from '../image/goBack.png'
 import '../css/vendorCreateProp.css'
 import Header from "./Header";
 import {useSelector,useDispatch} from 'react-redux'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Cookie from 'js-cookie'
 
 function VendorCreatePro()
 {
+  let navigate=useNavigate()
+
+    //authentication 
+    let a=Cookie.get('uid')
+    // console.log(` a is ${a}`);
+    if(!a)
+    {
+        navigate('/')
+    }
+    
     // window.location.reload()
     let location=useLocation()
     

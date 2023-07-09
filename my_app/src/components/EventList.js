@@ -4,12 +4,23 @@ import party from '../image/party-people-enjoy-concert-at-festival-summer-DHDMPW
 import '../css/eventList.css'
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
+import Cookie from 'js-cookie'
 
 
 function EventList()
 {
    let navigate=useNavigate()
    let location=useLocation()
+
+   //authentication
+   
+   let a=Cookie.get('uid')
+   // console.log(` a is ${a}`);
+   if(!a)
+   {
+       navigate('/')
+   }
+
    // console.log(location.state);
    let [eventLists,setEventList]=useState([])
    let [selectedEvent,setSelectedEvent]=useState([])

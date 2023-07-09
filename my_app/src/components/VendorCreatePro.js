@@ -13,12 +13,12 @@ function VendorCreatePro()
   let navigate=useNavigate()
 
     //authentication 
-    let a=Cookie.get('uid')
-    // console.log(` a is ${a}`);
-    if(!a)
-    {
-        navigate('/')
-    }
+    // let a=Cookie.get('uid')
+    // // console.log(` a is ${a}`);
+    // if(!a)
+    // {
+    //     navigate('/')
+    // }
     
     // window.location.reload()
     let location=useLocation()
@@ -77,14 +77,14 @@ function VendorCreatePro()
 
     //receving event data from backend
     useEffect(()=>{
-      fetch(`https://event-proposal-backend-5ouz.onrender.com/${token_id}`)
+      fetch(`http://localhost:1000/fetchingEventData/${token_id}`)
       // fetch(`http://localhost:1000/fetchingEventData`)
       .then((data)=>data.json())
       .then((res)=>{
         // console.log(res)
         setCreatedEvent(res);
       })
-      .catch(()=>console.log('fetching error'))
+      .catch(()=>console.log('fetching error (receving)'))
     },[createdEvent])
 
     function saveData(e,prop)
@@ -103,7 +103,7 @@ function VendorCreatePro()
         let data=new FormData()
         data.append('file',file)
         data.append('upload_preset','event_project')
-        fetch('https://event-proposal-backend-5ouz.onrender.com/image/upload',{
+        fetch('https://api.cloudinary.com/v1_1/df78wetic/image/upload',{
           method:'POST',
           body:data
         })
@@ -142,7 +142,7 @@ function VendorCreatePro()
         if(editEventData)
         {
           console.log(location.state._id);
-          fetch(`https://event-proposal-backend-5ouz.onrender.com/${location.state._id}`,{
+          fetch(`http://localhost:1000/updateData/${location.state._id}`,{
             method:'PATCH',
             headers:{
               'content-type':'application/json'
@@ -168,10 +168,11 @@ function VendorCreatePro()
             Events:'',
             image:[],
           })
+          setEditEvent(false)
         }
         else
         {
-          fetch(`https://event-proposal-backend-5ouz.onrender.com/${token_id}/${vendor_name}/${vendor_email}`,{
+          fetch(`http://localhost:1000/cresteEvent/${token_id}/${vendor_name}/${vendor_email}`,{
             method:'POST',
             headers:{
               'content-type':'application/json'

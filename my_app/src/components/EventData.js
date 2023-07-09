@@ -29,7 +29,7 @@ function EventData()
        <nav className="navBar">
         <div className="navBotton"><button className="select" onClick={()=>navigate('/events_list',{state:location.state._id})}>Select</button></div>
         <div className="leftNaveTag">
-           <img src={backBtn} alt="back" className="backBtn"/>
+           <img src={backBtn} alt="back" onClick={()=>navigate('/events_list')} className="backBtn"/>
            <p className="nameOfVendor">Proposals &lt; {location.state.vendor_name}</p>
         </div>
        </nav>

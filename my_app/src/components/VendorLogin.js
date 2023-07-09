@@ -69,7 +69,7 @@ function VendorLogin()
         {
             if(th2)
             {
-            fetch('https://event-proposal-backend-5ouz.onrender.com/userLogin',{
+            fetch('http://localhost:1000/userLogin',{
                 method:"POST",
                 headers:{
                     "content-type":"application/json"
@@ -81,9 +81,7 @@ function VendorLogin()
                 console.log(data)
                 if(data[0]==="login success")
                 {
-                    Cookie.set('uid',data[1].token,{
-                        expires:1
-                    })
+                    Cookie.set('uid',data[1].token)
                     dispatch(updateVendorDetail(data[1]))
                     showToast()
                     setTimeout(()=>{
@@ -111,7 +109,7 @@ function VendorLogin()
         }
         if(th1===true)
         {
-            fetch('https://event-proposal-backend-5ouz.onrender.com/vendorLogin',{
+            fetch('http://localhost:1000/vendorLogin',{
                 method:"POST",
                 headers:{
                     "content-type":"application/json"
@@ -124,9 +122,7 @@ function VendorLogin()
                 if(data[0]==="login success")
                 {
                     showToast()
-                    Cookie.set('uid',data[1].token,{
-                        expires:1
-                    })
+                    Cookie.set('uid',data[1].token)
                     dispatch(updateVendorDetail(data[1]))
                     setTimeout(()=>{
                         navigate("/proposal_list")

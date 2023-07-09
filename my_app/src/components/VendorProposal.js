@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import '../css/vendorProposal.css'
 import searchImg from '../image/search.jpg'
@@ -15,14 +15,24 @@ function VendorProposal()
     let [newEventData,setEventData]=useState([])
     let [searchData,setSerarch]=useState('')
     //fetching created event data
+   useEffect(()=>{
     fetch(`http://localhost:1000/fetchingEventData/${token_id}`)
-      .then((data)=>data.json())
-      .then((res)=>{
-        console.log(res)
-        setEventData(res)
-      })
-      .catch(()=>console.log('fetching error'))
+    .then((data)=>data.json())
+    .then((res)=>{
+    //   console.log(res)
+      setEventData(res)
+    })
+    .catch(()=>console.log('fetching error'))
+   },[setEventData])
 
+   function deleteEvent(id)
+   {
+       console.log(id);
+        fetch(`http://localhost:1000/deleteEvent/${id}`)
+        .then((data)=>data.json())
+        .then((res)=>console.log(res))
+        .catch(()=>console.log('backend error'))
+   }
 
     const navigate=useNavigate()
     return <>
@@ -39,11 +49,22 @@ function VendorProposal()
                    </form>
                </div>
                <div className="b2">
-                    <span><img src={filterImg} alt="filter" className="filterImg" /></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span><img src={filterImg} alt="filter" className="filterImg" />
+                      <div className="filterBox">
+                        {/* <ul>
+                            <li><input type="checkbox" /><label htmlFor="">Marriage</label></li>
+                            <li><input type="checkbox" /><label htmlFor="">Birthday</label></li>
+                            <li><input type="checkbox" /><label htmlFor="">Office paty</label></li>
+                            <li><input type="checkbox" /><label htmlFor="">Office paty</label></li>
+                            <li><input type="checkbox" /><label htmlFor="">Office paty</label></li>
+                        </ul> */}
+                      </div>
+                    </span> &nbsp;&nbsp;&nbsp;&nbsp;
                     <span><input class="btn btn-primary" id="createBtn" type="button" value="CREATE" onClick={()=>navigate("/create_Proposal")}></input></span>
                </div>
           </div>
-          {newEventData.filter((d)=>d.eventName.toLowerCase().includes(searchData)).map((data)=><>
+          {(newEventData.length!=0)? 
+          newEventData.filter((d)=>d.eventName.toLowerCase().includes(searchData)).map((data)=><>
             <div className="subCon2">
                 <div className="b3">
                     <h6>Event Name</h6>
@@ -72,12 +93,12 @@ function VendorProposal()
                         <h6>{data.budget}</h6>
                     </div>
                     <div className="b4_1" id="b4_1">
-                        <span><img src={editImg} alt="edit" className="edit" /></span> 
-                        <span><img src={deleteImg} alt="delete" className="delete" /></span>
+                        <span><img src={editImg} alt="edit" className="edit" onClick={()=>navigate('/create_Proposal',{state:data})} /></span> 
+                        <span onClick={()=>deleteEvent(data._id)}><img src={deleteImg} alt="delete" className="delete" /></span>
                     </div>
                 </div>
           </div>
-          </>)}
+          </>):<><h3 style={{textAlign:'center',marginTop:'30px',color:'silver',letterSpacing:'2px'}}>No data present, please create new data</h3></>}
           {/* <div className="subCon2">
                 <div className="b3">
                     <h6>Event Name</h6>

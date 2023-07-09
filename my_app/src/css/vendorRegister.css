@@ -99,3 +99,9 @@ body{
     top: 80px;
     color: red;
 }
+
+/* try */
+
+/* input[type="number"]::-webkit-inner-spin-button{
+    display: none;
+} */

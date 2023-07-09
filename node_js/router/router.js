@@ -12,22 +12,29 @@ router.get('/',(req,res)=>{
     res.send('hello world')
 })
 
-router.post('/userReg',(req,res)=>{
+router.post('/userReg',async (req,res)=>{
      try 
      {
         // console.log(req.body);
         const {name,email,contact,password}=req.body
         const token=jwt.sign(email,process.env.secretKey)
-        // console.log(token)
-        const doc=new userRegModel({
-        name:name,
-        email:email,
-        contact:contact,
-        password:password,
-        token:token
-     })
-     doc.save()
-     res.json('registred successfully')
+        let data=await userRegModel.find({email:email})
+        if(data.length>0)
+        {
+           res.json('already registered')
+        }
+        else
+        {
+            const doc=new userRegModel({
+                name:name,
+                email:email,
+                contact:contact,
+                password:password,
+                token:token
+             })
+             doc.save()
+             res.json('registred successfully')
+        }
      } 
      catch (error) 
      {
@@ -35,21 +42,30 @@ router.post('/userReg',(req,res)=>{
      }
 })
 
-router.post('/vendorReg',(req,res)=>{
+router.post('/vendorReg',async (req,res)=>{
     try 
     {
        // console.log(req.body);
        const {name,email,contact,password}=req.body
-       const token=jwt.sign(email,process.env.secretKey)
-       const doc=new vendorRegModel({
-       name:name,
-       email:email,
-       contact:contact,
-       password:password,
-       token:token
-    })
-    doc.save()
-    res.json('registred successfully')
+       let data=await vendorRegModel.find({email:email})
+       if(data.length>0)
+       {
+           res.json('already registered')
+       }
+       else
+       {
+        const token=jwt.sign(email,process.env.secretKey)
+        const doc=new vendorRegModel({
+            name:name,
+            email:email,
+            contact:contact,
+            password:password,
+            token:token
+        })
+        doc.save()
+        res.json('registred successfully')
+       }
+       
     } 
     catch (error) 
     {
@@ -301,6 +317,34 @@ router.get('/fetchingEventData',async (req,res)=>{
     {
         res.json('backend error')
     }
+})
+
+//route to delete event 
+router.get('/deleteEvent/:id',async (req,res)=>{
+    try 
+    {
+        let id=req.params.id
+        console.log(id);
+        let data=await eventModel.findByIdAndDelete(id)
+        // console.log(data);
+        res.json('event deleted')
+    } 
+    catch (error) 
+    {
+        res.json('backend error')
+    }
+})
+
+//edit existing data
+
+router.patch('/updateData/:id',async (req,res)=>{
+    let id=req.params.id
+    console.log(req.body);
+    let {eventName,placeOfEvent,proposalType,eventType,budget,startDate,endDate,description,food,Events,image}=req.body
+    let data=await eventModel.findByIdAndUpdate({_id:id},req.body)
+    // data.save()
+    // console.log(data);
+    res.json('update successfully')
 })
 
 

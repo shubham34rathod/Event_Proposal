@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import '../css/vendorRegister.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import { useNavigate } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css'
+import {ToastContainer,toast} from 'react-toastify'
 
 function VendorRegister()
 {
@@ -14,7 +16,10 @@ function VendorRegister()
         confirmPassword:''
     })
     const [passwordAlert,setPassAlert]=useState(true)
+    const [passwordCheck,setPassword]=useState(true)
     const [fieldAlert,setFieldAlert]=useState(true)
+    const [userAlert,setUserAlert]=useState(true)
+    const [checkUser,setCheckUser]=useState(true)
     const [th1,setTh1]=useState(false)
     const [th2,setTh2]=useState(false)
     const Style1={
@@ -41,22 +46,37 @@ function VendorRegister()
             [prop]:e.target.value
         }))
     }
-    function register()
+       function register()
     {
-       if(userInfo.password!==userInfo.confirmPassword)
+        if(th1===false && th2===false)
+        {
+            setUserAlert(false)
+            setTimeout(()=>{
+                setUserAlert(true)
+            },3000)
+        }
+        else if(userInfo.name===""||userInfo.email===""||userInfo.contact===""||userInfo.password===""||userInfo.confirmPassword==="")
+        {
+             setFieldAlert(false)
+             setTimeout(()=>{
+                 setFieldAlert(true)
+             },3000)
+        }
+        else if(userInfo.password.length<8)
+        {
+            setPassword(false)
+        }
+       else if(userInfo.password!==userInfo.confirmPassword)
        {
+            // let pass1=document.getElementsByClassName('input02')[3]
+            let pass2=document.getElementsByClassName('input02')[4]
+            pass2.style.border='1px solid red'
             setPassAlert(false)
             setTimeout(()=>{
                 setPassAlert(true)
             },3000)
        }
-       if(userInfo.name===""||userInfo.email===""||userInfo.contact===""||userInfo.password===""||userInfo.confirmPassword==="")
-       {
-            setFieldAlert(false)
-            setTimeout(()=>{
-                setFieldAlert(true)
-            },3000)
-       }
+      
        else
        {
         if(th2===true)
@@ -72,9 +92,19 @@ function VendorRegister()
              .then((data)=>data.json())
              .then((responce)=>{
                  console.log(responce)
+                 if(responce==="already registered")
+                 {
+                     setCheckUser(false)
+                     setTimeout(()=>{
+                        setCheckUser(true)
+                     },4000)
+                 }
                  if(responce==="registred successfully")
                  {
-                     Navigate("/")
+                    showToast()
+                    setTimeout(()=>{
+                        Navigate("/")
+                    },4000)
                  }
              })
              .catch(()=>console.log("uploading error"))
@@ -94,9 +124,19 @@ function VendorRegister()
              .then((data)=>data.json())
              .then((responce)=>{
                  console.log(responce)
+                 if(responce==="already registered")
+                 {
+                     setCheckUser(false)
+                     setTimeout(()=>{
+                        setCheckUser(true)
+                     },4000)
+                 }
                  if(responce==="registred successfully")
                  {
-                     Navigate("/")
+                    showToast()
+                    setTimeout(()=>{
+                        Navigate("/")
+                    },4000)
                  }
              })
              .catch(()=>console.log("uploading error"))
@@ -105,6 +145,18 @@ function VendorRegister()
         }
        }
     }
+
+    
+    //toast function
+
+    function showToast()
+    {
+        toast.success('Registered successfully',{
+            autoClose:3000,
+            position:toast.POSITION.TOP_CENTER
+        })
+    }
+
     return <>
        <div className="body2">
           <div className="parent01">
@@ -126,11 +178,13 @@ function VendorRegister()
                  </div>
                  <div className='formBox1'>
                     <p id="signinTxt1">Sign in your Account</p>
-                    <input type="text" placeholder='Name' className="input02" name='name' onChange={(e)=>setUser(e,'name')}/><br />
-                    <input type="email" placeholder='Email' className="input02" name='email' onChange={(e)=>setUser(e,'email')}/>
-                    <input type="number" placeholder='Contact' className="input02" name='contact' onChange={(e)=>setUser(e,'contact')}/>
-                    <input type="password" placeholder='Password' className="input02" name='password' onChange={(e)=>setUser(e,'password')}/>
-                    <input type="password" placeholder='Confirm Password' className="input02" name='cnfPassword' onChange={(e)=>setUser(e,'confirmPassword')}/>
+                    <input type="text" placeholder='Name' className="input02" name='name' onChange={(e)=>setUser(e,'name')} required/><br />
+                    <input type="email" placeholder='Email'  className="input02" name='email' onChange={(e)=>setUser(e,'email')} required/>
+                    {/* <input type="text" inputMode='numeric' pattern='[0-9]+' placeholder='Contact' maxLength='10' className="input02" name='contact' onChange={(e)=>setUser(e,'contact')} required/> */}
+                    <input type="tel" pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' placeholder='xxx-xxx-xxxx' maxLength='10' className="input02" name='contact' onChange={(e)=>setUser(e,'contact')} required/>
+                    <input type="password" placeholder='Password' minLength='8' className="input02" name='password' onChange={(e)=>setUser(e,'password')} required/>
+                    {!passwordCheck && <p style={{fontSize:'12px',color:'red',marginLeft:'15px'}}>*password must contain minimum 8 charecters</p>}
+                    <input type="password" placeholder='Confirm Password' className="input02" name='cnfPassword' onChange={(e)=>setUser(e,'confirmPassword')} required/>
                  </div>
                  <div className="buttons1">
                     <p id="createAc" onClick={()=>Navigate('/')}>Sign In</p>
@@ -138,7 +192,9 @@ function VendorRegister()
                  </div>
               </form>
               {!passwordAlert && <p className='passAlert'>Password doen't match</p>}
-              {!fieldAlert && <p className='passAlert'>All field's are required</p>}
+              {!fieldAlert && <p className='passAlert'><b>All field's are required</b></p>}
+              {!checkUser && <p className='passAlert'><b>Email already registered</b></p>}
+              { !userAlert&& <p className='passAlert'><b>Select type of account</b></p>}
           </div>
        </div>
     </>

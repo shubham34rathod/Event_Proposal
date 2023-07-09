@@ -25,11 +25,20 @@ body{
 }
 .b2{
     position: relative;
-    left: 890px;
+    left: 800px;
+    display: flex;
 }
 .filterImg{
+    border-radius: 1px solid;
     border-radius: 100px;
     width: 40px;
+}
+.filterBox{
+    /* width: 50px;
+    height: 50px ;
+    border: 1px solid; */
+    position: fixed;
+    right: 280px;
 }
 .subCon2{
     border: 1px solid;

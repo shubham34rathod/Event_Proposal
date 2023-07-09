@@ -105,4 +105,14 @@ body{
     position: relative;
     left: 110px;
     top:10px;
+    /* text-decoration: underline; */
+}
+.passwordAlert{
+    font-size: 14px;
+    /* display: none; */
+    color: red;
+    position: relative;
+    left: 130px;
+    top:10px;
+    /* text-decoration: underline; */
 }

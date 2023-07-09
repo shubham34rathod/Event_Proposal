@@ -3,6 +3,8 @@ import '../css/vendorLogin.css'
 import { useNavigate } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import {updateVendorDetail} from '../components/slice/vendorSlice'
+import 'react-toastify/dist/ReactToastify.css'
+import {ToastContainer,toast} from 'react-toastify'
 // import 'bootstrap/dist/css/bootstrap.css'
 
 function VendorLogin()
@@ -19,6 +21,7 @@ function VendorLogin()
     const [userAlert,setAlert]=useState(true)
     const [checkUserReg,setUserReg]=useState(true)
     const [fieldAlert,setFieldAlert]=useState(true)
+    const [passwordCheck,setCheckPass]=useState(true)
     const Style1={
         borderLeft:'none',
         color:'#4E94F4'
@@ -54,12 +57,17 @@ function VendorLogin()
                 setAlert(true)
             },3000)
         }
-        if(userLoginData.phoneOrEmial==="" || userLoginData.password==="")
+        else if(userLoginData.phoneOrEmial==="" || userLoginData.password==="")
         {
-
+            setFieldAlert(false)
+            setTimeout(()=>{
+                setFieldAlert(true)
+            },3000)
         }
-        if(th2)
+        else
         {
+            if(th2)
+            {
             fetch('http://localhost:1000/userLogin',{
                 method:"POST",
                 headers:{
@@ -73,13 +81,23 @@ function VendorLogin()
                 if(data[0]==="login success")
                 {
                     dispatch(updateVendorDetail(data[1]))
-                    navigate("/events_list")
+                    showToast()
+                    setTimeout(()=>{
+                        navigate("/events_list")
+                    },5000)
+                }
+                if(data==="incorrect password")
+                {
+                    setCheckPass(false)
+                    setTimeout(()=>{
+                        setCheckPass(true)
+                    },3000)
                 }
                 if(data==="user not registered")
                 {
                     setUserReg(false)
                     setTimeout(()=>{
-                        navigate("/register")
+                        // navigate("/register")
                         setUserReg(true)
                     },3000)
                 }
@@ -101,24 +119,46 @@ function VendorLogin()
                 console.log(data)
                 if(data[0]==="login success")
                 {
-                    navigate("/proposal_list")
+                    showToast()
                     dispatch(updateVendorDetail(data[1]))
+                    setTimeout(()=>{
+                        navigate("/proposal_list")
+                    },5000)
                     console.log(data[1]);
+                }
+                if(data==="incorrect password")
+                {
+                    setCheckPass(false)
+                    setTimeout(()=>{
+                        setCheckPass(true)
+                    },3000)
                 }
                 if(data==="user not registered")
                 {
                     setUserReg(false)
                     setTimeout(()=>{
-                        navigate("/register")
+                        // navigate("/register")
                         setUserReg(true)
-                    },3000)
+                    },5000)
                 }
             })
             .catch(()=>console.log('fetching error'))
             console.log(userLoginData);
         }
+        }
+    }
+
+    //toast function
+
+    function showToast()
+    {
+        toast.success('Login successfully',{
+            autoClose:3000,
+            position:toast.POSITION.TOP_CENTER
+        })
     }
     return <>
+    <ToastContainer toastStyle={{color:'green'}}></ToastContainer>
        <div className="body">
           <div className="parent1">
                <h1 style={{color:'white',margin:'30px'}}>LOGO</h1>
@@ -148,8 +188,9 @@ function VendorLogin()
                     <input class="btn btn-primary" id="signInBtn" type="button" value="SIGN IN" onClick={signIn}></input>
                  </div>
                  {(!userAlert) && <p className="userAlert"><b>Please select type of user</b></p>}
-                 {(!checkUserReg) && <p className="userAlert"><b>User is not registered</b></p>}
+                 {(!checkUserReg) && <p className="userAlert"><b>User is not registered </b></p>}
                  {(!fieldAlert) && <p className="userAlert"><b>Please enter all the fields</b></p>}
+                 {(!passwordCheck) && <p className="passwordAlert"><b>Incorrect password</b></p>}
               </form>
           </div>
        </div>

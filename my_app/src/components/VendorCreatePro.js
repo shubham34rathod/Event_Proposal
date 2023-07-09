@@ -5,13 +5,17 @@ import goBack from '../image/goBack.png'
 import '../css/vendorCreateProp.css'
 import Header from "./Header";
 import {useSelector,useDispatch} from 'react-redux'
+import { useLocation } from "react-router-dom";
 
 function VendorCreatePro()
 {
     // window.location.reload()
+    let location=useLocation()
+    
     let token_id=useSelector((state)=>state.vendor_slice.token_id)
     let vendor_name=useSelector((state)=>state.vendor_slice.name)
     let vendor_email=useSelector((state)=>state.vendor_slice.email)
+    let [editEventData,setEditEvent]=useState(false)
     let [popUp,setPopup]=useState(true)
     let [imgBoxClass,setImgBoxClass]=useState('samples2')
     let [imgClassName,setClassName]=useState('partyImg')
@@ -28,6 +32,34 @@ function VendorCreatePro()
          Events:'',
          image:[],
     })
+
+    //edit the existing event data
+
+    useEffect(()=>{
+      // console.log(location.state);
+      // console.log(location.state!=null);
+      if(location.state!=null)
+      {
+        setEditEvent(true)
+        // setVenueData({
+          venueData.eventName=location.state.eventName;
+          venueData.placeOfEvent=location.state.placeOfEvent;
+          venueData.proposalType=location.state.proposalType;
+          venueData.eventType=location.state.eventType;
+          venueData.budget=location.state.budget;
+          venueData.startDate=location.state.startDate;
+          venueData.endDate=location.state.endDate;
+          venueData.description=location.state.description;
+          venueData.food=location.state.food;
+          venueData.Events=location.state.Events;
+          venueData.image=location.state.image;
+        // })
+        console.log(venueData);
+        // console.log(location.state._id);
+      }
+    },[location])
+
+
     let [IMG,setIMG]=useState([])
     let [imageData,setImgData]=useState([])
     let [createdEvent,setCreatedEvent]=useState([])
@@ -96,33 +128,66 @@ function VendorCreatePro()
     function submit()
     {
         // console.log(venueData);
-        fetch(`http://localhost:1000/cresteEvent/${token_id}/${vendor_name}/${vendor_email}`,{
-          method:'POST',
-          headers:{
-            'content-type':'application/json'
-          },
-          body:JSON.stringify(venueData)
-        })
-        .then((data)=>data.json())
-        .then((res)=>{
-          console.log(res)
-        })
-        .catch(()=>console.log('fetching error (create event)'))
-        // console.log(IMG);
-        setVenueData({
-          eventName:'',
-          placeOfEvent:'',
-          proposalType:'',
-          eventType:'',
-          budget:'',
-          startDate:'',
-          endDate:'',
-          description:'',
-          food:'',
-          Events:'',
-          image:[],
-        })
-        setIMG([])
+        if(editEventData)
+        {
+          console.log(location.state._id);
+          fetch(`http://localhost:1000/updateData/${location.state._id}`,{
+            method:'PATCH',
+            headers:{
+              'content-type':'application/json'
+            },
+            body:JSON.stringify(venueData)
+          })
+          .then((data)=>data.json())
+          .then((res)=>{
+            console.log(res)
+          })
+          .catch(()=>console.log('fetching error (event update)'))
+
+          setVenueData({
+            eventName:'',
+            placeOfEvent:'',
+            proposalType:'',
+            eventType:'',
+            budget:'',
+            startDate:'',
+            endDate:'',
+            description:'',
+            food:'',
+            Events:'',
+            image:[],
+          })
+        }
+        else
+        {
+          fetch(`http://localhost:1000/cresteEvent/${token_id}/${vendor_name}/${vendor_email}`,{
+            method:'POST',
+            headers:{
+              'content-type':'application/json'
+            },
+            body:JSON.stringify(venueData)
+          })
+          .then((data)=>data.json())
+          .then((res)=>{
+            console.log(res)
+          })
+          .catch(()=>console.log('fetching error (create event)'))
+          // console.log(IMG);
+          setVenueData({
+            eventName:'',
+            placeOfEvent:'',
+            proposalType:'',
+            eventType:'',
+            budget:'',
+            startDate:'',
+            endDate:'',
+            description:'',
+            food:'',
+            Events:'',
+            image:[],
+          })
+          setIMG([])
+        }
     }
     return <>
     {/* <Header></Header> */}
@@ -151,7 +216,7 @@ function VendorCreatePro()
             <div className="creatProposal">
                {/* <h4>Create Praposal</h4> */}
                <img src={close} alt="close" className="closeImg" onClick={closePopup}/>
-               <h4>Create Praposal</h4><span>{token_id}</span>
+               <h4>Create Praposal</h4>
                <hr className="hr1"/>
             </div>
             <div className="parentPop">
@@ -228,9 +293,14 @@ function VendorCreatePro()
 
                   </div>
                   <div id="imgBox2">
-                    {IMG.map((data)=><>
+                    {/* {IMG.map((data)=><>
                       <div className="subImgBox2"><img src={data} style={{width:"100%",height:"100%"}} /></div>
-                    </>)}
+                    </>)} */}
+                    {(editEventData)? <>{venueData.image.map((data)=><>
+                      <div className="subImgBox2"><img src={data} style={{width:"100%",height:"100%"}} /></div>
+                    </>)}</> : <>{IMG.map((data)=><>
+                      <div className="subImgBox2"><img src={data} style={{width:"100%",height:"100%"}} /></div>
+                    </>)}</>}
                     {/* <div className="subImgBox2"></div>
                     <div className="subImgBox2"></div>
                     <div className="subImgBox2"></div>

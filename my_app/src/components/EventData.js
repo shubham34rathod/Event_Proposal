@@ -8,12 +8,21 @@ import contact2 from '../image/contact2.jpeg'
 import contact3 from '../image/contatc3.jpg'
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Cookie from 'js-cookie'
 
 
 function EventData()
 {
    let location=useLocation()
    let navigate=useNavigate()
+
+   //authentication
+   
+   let a=Cookie.get('uid')
+   if(!a)
+   {
+       navigate('/')
+   }
    console.log(location.state);
     return <>
        <Header></Header>

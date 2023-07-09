@@ -7,10 +7,21 @@ import editImg from '../image/pencil-edit-button.jpg'
 import deleteImg from '../image/bin.jpg'
 import { useNavigate } from "react-router-dom";
 import {useSelector,useDispatch} from 'react-redux'
+import Cookie from 'js-cookie'
 // import 'bootstrap/dist/css/bootstrap.css'
 
 function VendorProposal()
 {
+    const navigate=useNavigate()
+
+    //authentication 
+    let a=Cookie.get('uid')
+    // console.log(` a is ${a}`);
+    if(!a)
+    {
+        navigate('/')
+    }
+
     let token_id=useSelector((state)=>state.vendor_slice.token_id)
     let [newEventData,setEventData]=useState([])
     let [searchData,setSerarch]=useState('')
@@ -34,7 +45,7 @@ function VendorProposal()
         .catch(()=>console.log('backend error'))
    }
 
-    const navigate=useNavigate()
+    
     return <>
        <div className="head">
           <Header></Header>

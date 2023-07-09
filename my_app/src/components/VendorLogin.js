@@ -68,7 +68,7 @@ function VendorLogin()
         {
             if(th2)
             {
-            fetch('http://localhost:1000/userLogin',{
+            fetch('https://event-proposal-backend-5ouz.onrender.com/userLogin',{
                 method:"POST",
                 headers:{
                     "content-type":"application/json"
@@ -107,7 +107,7 @@ function VendorLogin()
         }
         if(th1===true)
         {
-            fetch('http://localhost:1000/vendorLogin',{
+            fetch('https://event-proposal-backend-5ouz.onrender.com/vendorLogin',{
                 method:"POST",
                 headers:{
                     "content-type":"application/json"

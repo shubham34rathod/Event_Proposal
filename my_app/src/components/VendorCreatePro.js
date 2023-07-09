@@ -77,7 +77,7 @@ function VendorCreatePro()
 
     //receving event data from backend
     useEffect(()=>{
-      fetch(`http://localhost:1000/fetchingEventData/${token_id}`)
+      fetch(`https://event-proposal-backend-5ouz.onrender.com/fetchingEventData/${token_id}`)
       // fetch(`http://localhost:1000/fetchingEventData`)
       .then((data)=>data.json())
       .then((res)=>{
@@ -142,7 +142,7 @@ function VendorCreatePro()
         if(editEventData)
         {
           console.log(location.state._id);
-          fetch(`http://localhost:1000/updateData/${location.state._id}`,{
+          fetch(`https://event-proposal-backend-5ouz.onrender.com/updateData/${location.state._id}`,{
             method:'PATCH',
             headers:{
               'content-type':'application/json'
@@ -172,7 +172,7 @@ function VendorCreatePro()
         }
         else
         {
-          fetch(`http://localhost:1000/cresteEvent/${token_id}/${vendor_name}/${vendor_email}`,{
+          fetch(`https://event-proposal-backend-5ouz.onrender.com/cresteEvent/${token_id}/${vendor_name}/${vendor_email}`,{
             method:'POST',
             headers:{
               'content-type':'application/json'
